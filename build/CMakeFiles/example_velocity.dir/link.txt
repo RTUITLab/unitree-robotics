@@ -1,0 +1,1 @@
+/usr/bin/c++   -O3   CMakeFiles/example_velocity.dir/examples/example_velocity.cpp.o  -o example_velocity  -L/home/unitree/unitree_legged_sdk/lib -rdynamic -pthread -lunitree_legged_sdk -llcm -Wl,-rpath,/home/unitree/unitree_legged_sdk/lib 

@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\new_sandbox.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\new_sandbox.dir/objects.a @CMakeFiles\new_sandbox.dir\objects1.rsp
+C:\MinGW\bin\g++.exe -O3 -g   -Wl,--whole-archive CMakeFiles\new_sandbox.dir/objects.a -Wl,--no-whole-archive  -o new_sandbox.exe -Wl,--out-implib,libnew_sandbox.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\new_sandbox.dir\linklibs.rsp

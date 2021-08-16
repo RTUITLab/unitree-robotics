@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\servo_tuning.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\servo_tuning.dir/objects.a @CMakeFiles\servo_tuning.dir\objects1.rsp
+C:\MinGW\bin\g++.exe -O3 -g   -Wl,--whole-archive CMakeFiles\servo_tuning.dir/objects.a -Wl,--no-whole-archive  -o servo_tuning.exe -Wl,--out-implib,libservo_tuning.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\servo_tuning.dir\linklibs.rsp

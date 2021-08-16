@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\lcm_server_high.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\lcm_server_high.dir/objects.a @CMakeFiles\lcm_server_high.dir\objects1.rsp
+C:\MinGW\bin\g++.exe -O3 -g   -Wl,--whole-archive CMakeFiles\lcm_server_high.dir/objects.a -Wl,--no-whole-archive  -o lcm_server_high.exe -Wl,--out-implib,liblcm_server_high.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\lcm_server_high.dir\linklibs.rsp
