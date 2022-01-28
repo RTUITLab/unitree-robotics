@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\standing_text.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\standing_text.dir/objects.a @CMakeFiles\standing_text.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -O3 -g   -Wl,--whole-archive CMakeFiles\standing_text.dir/objects.a -Wl,--no-whole-archive  -o standing_text.exe -Wl,--out-implib,libstanding_text.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\standing_text.dir\linklibs.rsp

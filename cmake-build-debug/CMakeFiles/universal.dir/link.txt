@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\universal.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\universal.dir/objects.a @CMakeFiles\universal.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -O3 -g   -Wl,--whole-archive CMakeFiles\universal.dir/objects.a -Wl,--no-whole-archive  -o universal.exe -Wl,--out-implib,libuniversal.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\universal.dir\linklibs.rsp

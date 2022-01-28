@@ -1,1 +1,0 @@
-/usr/bin/c++   -O3   CMakeFiles/servo_tuning.dir/examples/servo_tuning.cpp.o  -o servo_tuning  -L/home/unitree/unitree_legged_sdk/lib -rdynamic -pthread -lunitree_legged_sdk -llcm -Wl,-rpath,/home/unitree/unitree_legged_sdk/lib 

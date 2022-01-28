@@ -1,1 +1,0 @@
-/usr/bin/c++   -O3   CMakeFiles/kp_kd_test.dir/examples/kp_kd_test.cpp.o  -o kp_kd_test  -L/home/unitree/unitree_legged_sdk/lib -rdynamic -pthread -lunitree_legged_sdk -llcm -Wl,-rpath,/home/unitree/unitree_legged_sdk/lib 
