@@ -10,8 +10,8 @@ using namespace UNITREE_LEGGED_SDK;
 class Custom
 {
 public:
-    Custom(): control(LeggedType::A1, LOWLEVEL), udp() {
-        control.InitCmdData(cmd);
+    Custom(): control(LeggedType::A1), udp(LOWLEVEL) {
+        udp.InitCmdData(cmd);
     }
     void UDPRecv();
     void UDPSend();
@@ -19,7 +19,7 @@ public:
 
     void printOneLegTemp(int legId);
 
-    Control control;
+    Safety control;
     UDP udp;
     LowCmd cmd = {0};
     LowState state = {0};

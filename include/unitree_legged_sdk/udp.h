@@ -1,7 +1,6 @@
-/************************************************************************
-Copyright (c) 2020, Unitree Robotics.Co.Ltd. All rights reserved.
-Use of this source code is governed by the MPL-2.0 license, see LICENSE.
-************************************************************************/
+/*****************************************************************
+ Copyright (c) 2020, Unitree Robotics.Co.Ltd. All rights reserved.
+******************************************************************/
 
 #ifndef _UNITREE_LEGGED_UDP_H_
 #define _UNITREE_LEGGED_UDP_H_
@@ -21,11 +20,15 @@ namespace UNITREE_LEGGED_SDK
     // Notice: User defined data(like struct) should add crc(4Byte) at the end.
     class UDP {
 	public:
-        UDP(HighLevelType highControl = HighLevelType::Basic);  // unitree dafault IP and Port
-        UDP(uint16_t localPort, const char* targetIP, uint16_t targetPort, int sendLength, int recvLength);
-        UDP(uint16_t localPort, uint16_t targetPort, int sendLength, int recvLength); // as server, client IP can change
+        UDP(uint8_t level, HighLevelType highControl = HighLevelType::Basic);  // unitree dafault IP and Port
+        UDP(uint16_t localPort, const char* targetIP, uint16_t targetPort, int sendLength, int recvLength, int useTimeOut = -1);
+        UDP(uint16_t localPort, int sendLength, int recvLength, bool isServer = false); // as server, client IP and port can change
         ~UDP();
-        void switchLevel(int level);
+        void InitCmdData(HighCmd& cmd);
+        void InitCmdData(LowCmd& cmd);
+        void SwitchLevel(int level);
+        void SetDisconnectTime(float callback_dt, float disconnectTime);  // disconnect for another IP to connect
+        void SetAccessibleTime(float callback_dt, float accessibleTime);  // if can access data
 
 		int SetSend(HighCmd&);
         int SetSend(LowCmd&);
@@ -41,15 +44,20 @@ namespace UNITREE_LEGGED_SDK
         uint16_t targetPort;
         char*    localIP;
         uint16_t localPort;
+        bool accessible = false;         // can access or not
+        int useTimeOut = -1;             // use time out method or not, (unit: ms)
+        bool isServer = false;           // server mode with changeable IP/port. SetDisconnectTime() will set this true.
+
     private:
         void init(uint16_t localPort, const char* targetIP, uint16_t targetPort);
         
+        uint8_t levelFlag = HIGHLEVEL;   // default: high level
         int sockFd;
-        bool connected; // udp only works when connected
+        bool connected;                  // udp works with connect() function, rather than server mode
         int sendLength;
         int recvLength;
-        char* recvTemp;
         char* recvBuf;
+        char* recvSource;
         char* sendBuf;
         int lose_recv;
         pthread_mutex_t sendMut;

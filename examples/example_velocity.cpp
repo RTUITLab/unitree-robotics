@@ -1,7 +1,6 @@
-/************************************************************************
-Copyright (c) 2020, Unitree Robotics.Co.Ltd. All rights reserved.
-Use of this source code is governed by the MPL-2.0 license, see LICENSE.
-************************************************************************/
+/*****************************************************************
+ Copyright (c) 2020, Unitree Robotics.Co.Ltd. All rights reserved.
+******************************************************************/
 
 #include "unitree_legged_sdk/unitree_legged_sdk.h"
 #include <math.h>
@@ -12,14 +11,14 @@ using namespace UNITREE_LEGGED_SDK;
 class Custom
 {
 public:
-    Custom(): control(LeggedType::A1, LOWLEVEL), udp(){
-        control.InitCmdData(cmd);
+    Custom(uint8_t level): safe(LeggedType::Aliengo), udp(level){
+        udp.InitCmdData(cmd);
     }
     void UDPRecv();
     void UDPSend();
     void RobotControl();
 
-    Control control;
+    Safety safe;
     UDP udp;
     LowCmd cmd = {0};
     LowState state = {0};
@@ -61,8 +60,9 @@ void Custom::RobotControl()
     }
 
     if(motiontime > 10){
-        control.PowerProtect(cmd, state, 1);
-        control.PositionProtect(cmd, state, 0.087);
+        safe.PowerProtect(cmd, state, 1);
+        // You can uncomment it for position protection
+        // safe.PositionProtect(cmd, state, 0.087);
     }
 
     udp.SetSend(cmd);
@@ -70,13 +70,13 @@ void Custom::RobotControl()
 
 int main(void) 
 {
-    std::cout << "Control level is set to LOW-level." << std::endl
+    std::cout << "Communication level is set to LOW-level." << std::endl
               << "WARNING: Make sure the robot is hung up." << std::endl
               << "Press Enter to continue..." << std::endl;
     std::cin.ignore();
 
-    Custom custom;
-
+    Custom custom(LOWLEVEL);
+    // InitEnvironment();
     LoopFunc loop_control("control_loop", custom.dt,    boost::bind(&Custom::RobotControl, &custom));
     LoopFunc loop_udpSend("udp_send",     custom.dt, 3, boost::bind(&Custom::UDPSend,      &custom));
     LoopFunc loop_udpRecv("udp_recv",     custom.dt, 3, boost::bind(&Custom::UDPRecv,      &custom));

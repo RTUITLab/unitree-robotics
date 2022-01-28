@@ -1,7 +1,6 @@
-/************************************************************************
-Copyright (c) 2020, Unitree Robotics.Co.Ltd. All rights reserved.
-Use of this source code is governed by the MPL-2.0 license, see LICENSE.
-************************************************************************/
+/*****************************************************************
+ Copyright (c) 2020, Unitree Robotics.Co.Ltd. All rights reserved.
+******************************************************************/
 
 #include "unitree_legged_sdk/unitree_legged_sdk.h"
 #include <math.h>
@@ -11,9 +10,7 @@ using namespace UNITREE_LEGGED_SDK;
 class Custom
 {
 public:
-    Custom() : control(LeggedType::A1, LOWLEVEL), udp(){
-        control.InitCmdData(cmd);
-    }
+    Custom(uint8_t level) : udp(level), mylcm(level){}
     void UDPRecv(){
         udp.Recv();
     }
@@ -23,7 +20,6 @@ public:
     void LCMRecv();
     void RobotControl() ;
 
-    Control control;
     UDP udp;
     LCM mylcm;
     LowCmd cmd = {0};
@@ -55,7 +51,8 @@ void Custom::RobotControl()
 int main(void) 
 {
     
-    Custom custom;
+    Custom custom(LOWLEVEL);
+    // InitEnvironment();
     custom.mylcm.SubscribeCmd();
 
     LoopFunc loop_control("control_loop", 0.002, 3, boost::bind(&Custom::RobotControl, &custom));

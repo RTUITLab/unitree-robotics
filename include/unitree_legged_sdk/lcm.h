@@ -1,7 +1,6 @@
-/************************************************************************
-Copyright (c) 2020, Unitree Robotics.Co.Ltd. All rights reserved.
-Use of this source code is governed by the MPL-2.0 license, see LICENSE.
-************************************************************************/
+/*****************************************************************
+ Copyright (c) 2020, Unitree Robotics.Co.Ltd. All rights reserved.
+******************************************************************/
 
 #ifndef _UNITREE_LEGGED_LCM_H_
 #define _UNITREE_LEGGED_LCM_H_
@@ -51,7 +50,7 @@ namespace UNITREE_LEGGED_SDK
 
     class LCM {
 	public:
-        LCM();
+        LCM(uint8_t level);
         ~LCM();
         void SubscribeCmd();
         void SubscribeState();         // remember to call this when change control level
@@ -70,6 +69,7 @@ namespace UNITREE_LEGGED_SDK
         LCMHandler<HighCmd>     highCmdLCMHandler;
         LCMHandler<LowCmd>      lowCmdLCMHandler;
     private:
+        uint8_t levelFlag = HIGHLEVEL;   // default: high level
         lcm::LCM lcm;
         lcm::Subscription* subLcm;
         int lcmFd;

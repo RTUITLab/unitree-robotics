@@ -14,14 +14,14 @@ using namespace UNITREE_LEGGED_SDK;
 class Custom
 {
 public:
-    Custom(): control(LeggedType::A1, HIGHLEVEL), udp(){
-        control.InitCmdData(cmd);
+    Custom(): control(LeggedType::A1), udp(HIGHLEVEL){
+        udp.InitCmdData(cmd);
     }
     void UDPRecv();
     void UDPSend();
     void RobotControl();
 
-    Control control;
+    Safety control;
     UDP udp;
     HighCmd cmd = {0};
     HighState state = {0};

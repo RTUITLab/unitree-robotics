@@ -25,8 +25,8 @@ public:
 class Custom
 {
 public:
-    Custom(): control(LeggedType::A1, LOWLEVEL), udp() {
-        control.InitCmdData(cmd);
+    Custom(): control(LeggedType::A1), udp(LOWLEVEL) {
+        udp.InitCmdData(cmd);
     }
     void UDPSend();
     void UDPRecv();
@@ -34,7 +34,7 @@ public:
     void SetMotionSeq(std::vector<Motion*> newMotionSeq);
     void MoveOneLeg(int startTime, int endTime, int legIndex, const double * pos);
 
-    Control control;
+    Safety control;
     UDP udp;
     LowCmd cmd = {0};
     LowState state = {0};

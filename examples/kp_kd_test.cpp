@@ -8,14 +8,14 @@ using namespace std;
 
 class Custom {
 public:
-    Custom(): control(LeggedType::A1, LOWLEVEL), udp(){
-        control.InitCmdData(cmd);
+    Custom(): control(LeggedType::A1), udp(LOWLEVEL){
+        udp.InitCmdData(cmd);
     }
     void UDPSend();
     void UDPRecv();
     void RobotControl();
 
-    Control control;
+    Safety control;
     UDP udp;
     LowCmd cmd = {0};
     LowState state = {0};

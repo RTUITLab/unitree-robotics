@@ -7,36 +7,13 @@ link_directories(lib)
 
 add_compile_options(-std=c++11)
 
-set(EXTRA_LIBS -pthread libunitree_legged_sdk.so lcm)
+set(EXTRA_LIBS -pthread libunitree_legged_sdk_arm64.so lcm)
 
 set(CMAKE_CXX_FLAGS "-O3")
 
 # one pc one process
 add_executable(example_position examples/example_position.cpp)
 target_link_libraries(example_position ${EXTRA_LIBS})
-
-add_executable(jump examples/jump.cpp)
-target_link_libraries(jump ${EXTRA_LIBS})
-
-add_executable(servo_tuning examples/servo_tuning.cpp)
-target_link_libraries(servo_tuning ${EXTRA_LIBS})
-
-# Tests to understand how to work with kp/kd
-add_executable(kp_kd_test examples/kp_kd_test.cpp)
-target_link_libraries(kp_kd_test ${EXTRA_LIBS})
-
-# Try to controll joint position with torque
-add_executable(torque_controller controllers/torque_controller.cpp)
-target_link_libraries(torque_controller ${EXTRA_LIBS})
-
-add_executable(universal examples/universal.cpp)
-target_link_libraries(universal ${EXTRA_LIBS})
-
-add_executable(standing_text examples/standing_text.cpp)
-target_link_libraries(standing_text ${EXTRA_LIBS})
-
-add_executable(sandbox examples/sandbox.cpp)
-target_link_libraries(sandbox ${EXTRA_LIBS})
 
 add_executable(example_velocity examples/example_velocity.cpp)
 target_link_libraries(example_velocity ${EXTRA_LIBS})
@@ -46,6 +23,12 @@ target_link_libraries(example_torque ${EXTRA_LIBS})
 
 add_executable(example_walk examples/example_walk.cpp)
 target_link_libraries(example_walk ${EXTRA_LIBS})
+
+add_executable(example_dance examples/example_dance.cpp)
+target_link_libraries(example_dance ${EXTRA_LIBS})
+
+add_executable(example_wirelessHandle examples/example_wirelessHandle.cpp)
+target_link_libraries(example_wirelessHandle ${EXTRA_LIBS})
 
 # one pc multi process
 add_executable(lcm_server_high examples/lcm_server_high.cpp)
@@ -60,3 +43,18 @@ target_link_libraries(udp_send_test ${EXTRA_LIBS})
 
 add_executable(udp_recv_test examples/multi_pc_udp_recv.cpp)
 target_link_libraries(udp_recv_test ${EXTRA_LIBS})
+
+# lcm server
+add_executable(lcm_server examples/lcm_server.cpp)
+target_link_libraries(lcm_server ${EXTRA_LIBS})
+
+# pid calibration
+add_executable(pid_chart src/pid_calibration/Motion.cpp src/pid_calibration/RobotController.cpp src/pid_calibration/CppCharts.cpp src/pid_calibration/main.cpp)
+target_link_libraries(pid_chart ${EXTRA_LIBS} python3.6m)
+target_include_directories(pid_chart PRIVATE /usr/include/python3.6m src/pid_calibration/include)
+configure_file(src/pid_calibration/chart_example.py chart_example.py COPYONLY)
+file(MAKE_DIRECTORY build/plots)
+
+# add_subdirectory(pybind11)
+# pybind11_add_module(robot_interface_high_level src/python_interface_high_cmd.cpp)
+# target_link_libraries(robot_interface_high_level ${EXTRA_LIBS})
