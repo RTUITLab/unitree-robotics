@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\udp_recv_test.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\udp_recv_test.dir/objects.a @CMakeFiles\udp_recv_test.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -O3 -g   -Wl,--whole-archive CMakeFiles\udp_recv_test.dir/objects.a -Wl,--no-whole-archive  -o udp_recv_test.exe -Wl,--out-implib,libudp_recv_test.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\udp_recv_test.dir\linklibs.rsp

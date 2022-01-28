@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\torque_controller.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\torque_controller.dir/objects.a @CMakeFiles\torque_controller.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -O3 -g   -Wl,--whole-archive CMakeFiles\torque_controller.dir/objects.a -Wl,--no-whole-archive  -o torque_controller.exe -Wl,--out-implib,libtorque_controller.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\torque_controller.dir\linklibs.rsp
